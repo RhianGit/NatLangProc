@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 # Load data
 
 data = pd.read_csv(
-    "dontpatronizeme_pcl.tsv",
+    "data/dontpatronizeme_pcl.tsv",
     sep="\t",
     skiprows=4,
     header=None

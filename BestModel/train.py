@@ -16,7 +16,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load data
 data = pd.read_csv(
-    "dontpatronizeme_pcl.tsv",
+    "data/dontpatronizeme_pcl.tsv",
     sep="\t",
     skiprows=4,
     header=None
@@ -31,8 +31,8 @@ data.columns = [
     "label_raw"
 ]
 
-train_labels = pd.read_csv("train_semeval_parids-labels.csv")
-dev_labels = pd.read_csv("dev_semeval_parids-labels.csv")
+train_labels = pd.read_csv("data/train_semeval_parids-labels.csv")
+dev_labels = pd.read_csv("data/dev_semeval_parids-labels.csv")
 
 def convert_to_binary(label_string):
     label_list = ast.literal_eval(label_string)

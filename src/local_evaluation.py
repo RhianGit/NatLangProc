@@ -13,7 +13,7 @@ from sklearn.metrics import (
 
 dev_preds = pd.read_csv("dev.txt", header=None)[0].values
 
-dev_labels_df = pd.read_csv("dev_semeval_parids-labels.csv")
+dev_labels_df = pd.read_csv("data/dev_semeval_parids-labels.csv")
 dev_labels_df["label"] = dev_labels_df["label"].apply(lambda x: 1 if sum(ast.literal_eval(x)) > 0 else 0)
 true_labels = dev_labels_df["label"].values
 
@@ -41,7 +41,7 @@ print("False Positives:", len(false_positives))
 print("False Negatives:", len(false_negatives))
 
 data = pd.read_csv(
-    "dontpatronizeme_pcl.tsv",
+    "data/dontpatronizeme_pcl.tsv",
     sep="\t",
     skiprows=4,
     header=None

@@ -9,7 +9,7 @@ from datasets import Dataset
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 data = pd.read_csv(
-    "dontpatronizeme_pcl.tsv",
+    "data/dontpatronizeme_pcl.tsv",
     sep="\t",
     skiprows=4,
     header=None
@@ -27,7 +27,7 @@ data.columns = [
 data["id"] = data["id"].astype(str)
 data["paragraph"] = data["paragraph"].fillna("").astype(str)
 
-dev_labels = pd.read_csv("dev_semeval_parids-labels.csv")
+dev_labels = pd.read_csv("data/dev_semeval_parids-labels.csv")
 dev_labels["par_id"] = dev_labels["par_id"].astype(str)
 
 dev_df = data.merge(
@@ -39,7 +39,7 @@ dev_df = data.merge(
 dev_df = dev_df[["paragraph"]].reset_index(drop=True)
 
 test_df = pd.read_csv(
-    "task4_test.tsv",
+    "data/task4_test.tsv",
     sep="\t",
     header=None
 )
@@ -92,7 +92,7 @@ def predict(df):
 dev_probs = predict(dev_df)
 test_probs = predict(test_df)
 
-dev_labels_full = pd.read_csv("dev_semeval_parids-labels.csv")
+dev_labels_full = pd.read_csv("data/dev_semeval_parids-labels.csv")
 dev_labels_full["label"] = dev_labels_full["label"].apply(lambda x: 1 if sum(ast.literal_eval(x)) > 0 else 0)
 true_dev = dev_labels_full["label"].values
 
